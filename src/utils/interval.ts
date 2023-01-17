@@ -36,6 +36,8 @@ export default async function interval(
           )
         }
       }
+
+      return styleWatching
     }
   } catch (_) {}
 }
