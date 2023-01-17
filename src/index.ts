@@ -19,7 +19,13 @@ require('dotenv').config()
 
 const TOKEN = process.env.TOKEN
 
-let styleWatching: StyleWatchingType[] = []
+let styleWatching: StyleWatchingType[] = [
+  {
+    userId: '417050333609721857',
+    style: 'DV2181-900',
+    size: '10',
+  },
+]
 
 const client = new Client({
   intents: [
@@ -32,9 +38,11 @@ const client = new Client({
 client.on('ready', async () => {
   console.log(`Logged in as ${client.user!.tag}!`)
 
-  setInterval(() => interval(client, styleWatching), 1000 * 60 * 5) // 5 min
+  setInterval(async () => {
+    styleWatching = (await interval(client, styleWatching)) || styleWatching
+  }, 1000 * 60 * 2) // 2 min
 
-  interval(client, styleWatching)
+  styleWatching = (await interval(client, styleWatching)) || styleWatching
 })
 
 client.on(Events.MessageCreate, async (message: Message) => {
