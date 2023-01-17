@@ -5,9 +5,8 @@ import {
   Interaction,
   Message,
 } from 'discord.js'
-import * as dotenv from 'dotenv'
 
-import keepAlive from './server'
+import server from './server'
 
 import watch from './commands/watch'
 import watching from './commands/watching'
@@ -16,7 +15,7 @@ import interval from './utils/interval'
 import SelectMenuValueType from './utils/types/SelectMenuValueType'
 import StyleWatchingType from './utils/types/StyleWatchingType'
 
-dotenv.config()
+require('dotenv').config()
 
 const TOKEN = process.env.TOKEN
 
@@ -90,4 +89,4 @@ client.on(Events.InteractionCreate, async (interaction: Interaction) => {
 })
 
 client.login(TOKEN)
-keepAlive()
+server()
