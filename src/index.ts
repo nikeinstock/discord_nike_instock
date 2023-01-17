@@ -7,6 +7,8 @@ import {
 } from 'discord.js'
 import * as dotenv from 'dotenv'
 
+import keepAlive from './server'
+
 import watch from './commands/watch'
 import watching from './commands/watching'
 
@@ -88,3 +90,4 @@ client.on(Events.InteractionCreate, async (interaction: Interaction) => {
 })
 
 client.login(TOKEN)
+keepAlive()
